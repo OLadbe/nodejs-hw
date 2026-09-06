@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(pino({
@@ -28,9 +28,9 @@ app.get('/notes', (req, res) => {
   res.status(200).json({ "message": "Retrieved all notes" });
 });
 
-app.get('/notes/:noteID', (req, res) => {
-  const { noteID } = req.params;
-  res.status(200).json({ message: `Retrieved note with ID: ${noteID}` });
+app.get('/notes/:noteId', (req, res) => {
+  const { noteId } = req.params;
+  res.status(200).json({ message: `Retrieved note with ID: ${noteId}` });
  });
 
 
