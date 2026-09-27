@@ -39,7 +39,7 @@ export const loginUser = async (req, res) => {
     throw createHttpError(401, 'Ivalid credentials');
   }
 
-  await Session.deliteOne({ userid: user._id });
+  await Session.deleteOne({ userId: user._id });
   const newSession = await createSession(user._id);
   setSessionCookies(res, newSession);
   res.status(200).json(user);
@@ -58,7 +58,7 @@ export const logoutUser = async (req, res) => {
   res.status(204).send();
 };
 
-export const refreshuserSession = async (req, res) => {
+export const refreshUserSession = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;
 
   if (!sessionId || !refreshToken) {

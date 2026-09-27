@@ -13,6 +13,7 @@ export const getAllNotes = async (req, res) => {
   if (search) {
     noteQuery.where({
       $or: [
+        { userId: req.user._id },
         { title: { $regex: search, $options: 'i' } },
         { content: { $regex: search, $options: 'i' } },
       ],
